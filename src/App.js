@@ -34,6 +34,13 @@ export default class App extends Component {
     });
   };
   
+  handleClear = (e)=>{
+
+    this.setState({
+      items:[]
+    })
+  }
+
   render() {
     return (
       <div className='container'>
@@ -43,7 +50,7 @@ export default class App extends Component {
             <Todoinput item={this.state.item} 
             hadleChange={this.handleChange}
             handleSubmit = {this.handleSubmit} />
-            <Todolist items={this.state.items} />
+            <Todolist items={this.state.items} handleClear={this.handleClear} />
           </div>
         </div>
       </div>
