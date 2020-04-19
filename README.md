@@ -1,4 +1,4 @@
-View live on : https://quizzical-goodall-8413e3.netlify.app/ 
+View live on : https://naime1947-reacttodoapp1.netlify.app/
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
