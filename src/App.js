@@ -8,13 +8,13 @@ export default class App extends Component {
   state = {
     items:[],
     id:uuid(),
-    item:"",
+    title:"",
     editItem:false
   }
   
   handleChange = (e)=>{
     this.setState({
-      item: e.target.value
+      title: e.target.value
       });
     };
 
@@ -22,14 +22,22 @@ export default class App extends Component {
     e.preventDefault();
     const newItem = {
       id:this.state.id,
-      title:this.state.item
+      title:this.state.title
     };
-
-    const updatedItems = [...this.state.items, newItem];
+    let updatedItems = [];
+    if(this.state.editItem){
+      const index = this.state.items.findIndex(item=>item.id === this.state.id);
+      const newArray = [...this.state.items];
+      newArray[index] = newItem;
+      updatedItems = newArray;
+    }else{
+      updatedItems = [...this.state.items, newItem];
+    }
+    
     this.setState({
       items:updatedItems,
       id:uuid(),
-      item:"",
+      title:'',
       editItem:false
     });
   };
@@ -45,6 +53,15 @@ export default class App extends Component {
       items:filteredItems
     })
   };
+  handleEdit = (id)=>{
+    const filteredItem = this.state.items.find(item=>item.id===id);
+   
+    this.setState({
+      id:id,
+      title:filteredItem.title,
+      editItem:true
+    })
+  }
   
   render() {
     return (
@@ -52,12 +69,13 @@ export default class App extends Component {
         <div className='row'>
           <div className='col-10 mx-auto col-md-8 mt-4 '>
             <h3 className='text-capitalize text-center'>Todo Input</h3>
-            <Todoinput item={this.state.item} 
+            <Todoinput title={this.state.title} editItem={this.state.editItem} 
             hadleChange={this.handleChange}
             handleSubmit = {this.handleSubmit} />
             <Todolist items={this.state.items} 
             handleClear={this.handleClear} 
-            handleDelete = {this.handleDelete}/>
+            handleDelete = {this.handleDelete}
+            handleEdit = {this.handleEdit}/>
           </div>
         </div>
       </div>
