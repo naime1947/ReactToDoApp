@@ -35,12 +35,17 @@ export default class App extends Component {
   };
   
   handleClear = (e)=>{
-
     this.setState({
       items:[]
     })
   }
-
+  handleDelete=(id)=>{
+    const filteredItems = this.state.items.filter(item=> item.id!==id);
+    this.setState({
+      items:filteredItems
+    })
+  };
+  
   render() {
     return (
       <div className='container'>
@@ -50,7 +55,9 @@ export default class App extends Component {
             <Todoinput item={this.state.item} 
             hadleChange={this.handleChange}
             handleSubmit = {this.handleSubmit} />
-            <Todolist items={this.state.items} handleClear={this.handleClear} />
+            <Todolist items={this.state.items} 
+            handleClear={this.handleClear} 
+            handleDelete = {this.handleDelete}/>
           </div>
         </div>
       </div>
