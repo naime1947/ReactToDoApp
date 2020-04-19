@@ -21,8 +21,9 @@ export default class Todoinput extends Component {
                 onChange={hadleChange}
                 ></input>
             </div>
-        <button className={editItem?"btn btn-success btn-block mt-3 text-capitalize":"btn btn-primary btn-block mt-3 text-capitalize"} type="submit">
-    {  editItem? 'Edit' : 'Add'  }               </button>
+        <button className={editItem?"btn btn-success btn-block mt-3 text-capitalize":"btn btn-primary btn-block mt-3 text-capitalize"} 
+        type="submit"
+        disabled={title.length>0 ? false:true}>{  editItem? 'Edit' : 'Add'  }</button>
             </form>
             </div>
         )
