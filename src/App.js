@@ -44,13 +44,15 @@ export default class App extends Component {
   
   handleClear = (e)=>{
     this.setState({
-      items:[]
+      items:[],
+      editItem:false
     })
   }
   handleDelete=(id)=>{
     const filteredItems = this.state.items.filter(item=> item.id!==id);
     this.setState({
-      items:filteredItems
+      items:filteredItems,
+      editItem:false
     })
   };
   handleEdit = (id)=>{
